@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Breaking Bad</title>
+	<link rel="stylesheet" href="css/fullpage.min.css">
+	<link rel="stylesheet" href="css/styles.css">
+	<link href="https://fonts.googleapis.com/css2?family=Neuton:wght@400;700&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/6ace824e82.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="fullpage">
+	<div class="section" data-anchor="header">
+		<header class="header">
+			<div class="background">
+				<div class="left">
+					<img src="img/breaking-bad-seeklogo.svg" class="logoBB" alt="logo breaking bad">
+					<h1 class="title">Welcome to the breaking bad <span style="text-decoration: line-through;">official</span> website</h1>
+					<p class="text">Get information on your favorite characters and more... Beware of the motorhome, the meth is almost ready!</p>
+					<div class="buttons">
+						<a href="#characters" class="btn">Charactes</a>
+						<a href="#episodes" class="btn">Episodes</a>
+						<a href="#credits" class="btn">Credits</a>
+					</div>
+				</div>
+				<div class="right"></div>
+			</div>
+		</header>
+	</div>
+	<div class="section" data-anchor="characters">
+		<div class="characters">
+			<section class="section-character-info">
+				<div class="searchBar">
+					<input id="searchBar" class="bar" type="text" placeholder="search">
+					<i id="searchIcon" class="iconSearch fas fa-search"></i>
+					<div class="search-options">
+						<!-- <div class="searchOption" id="option2">walter white</div>
+						<div class="searchOption" id="option1">walter white jr</div> -->
+					</div>
+				</div>
+				<div class="info"></div>
+				<div class="otherInformation">
+<!-- 					<h4><span class="label">deaths for which he was responsible:</span></h4>
+					<h3 class="label">death information</h3>
+					<h4><span class="label">cause:</span></h4>
+					<h4><span class="label">responsible:</span></h4>
+					<h4><span class="label">last words:</span></h4>
+					<h4><span class="label">season:</span></h4>
+					<h4><span class="label">episode:</span></h4>
+					<br>
+					<p class="quote-character"></p> -->
+				</div>
+			</section>
+			<div class="allCharacters" style="left: 0%"></div>
+		</div>									
+	</div>
+	<div class="section" data-anchor="episodes">	
+		<div class="episodes-section">
+			<div class="furgo"></div>
+			<div class="episodes-menu"></div>
+		</div>
+	</div>
+	<div class="section" data-anchor="credits">
+		<div class="credits-section">
+			<div class="createby">
+				<h2 class="title">About this web site</h2>
+				<p>Hello my name is Daniel, I have created this website for educational purposes to put into practice my knowledge in the design and programming of websites. I want to especially thank <span class="label"><a target="_blank" href="https://www.instagram.com/ricardoabg_/"> <i class="fab fa-instagram"></i>Ricardo</a></span> for his contribution in the design of this site</p>
+
+				<ul>
+					<li><a href="https://github.com/DanielSftns/"><i class="fab fa-github"></i></a></li>
+					<li><a href="https://www.linkedin.com/in/sifontesdaniel/"><i class="fab fa-linkedin"></i></a></li>
+					<li><a target="_blank" href="https://www.instagram.com/daniel_sfts/"><i class="fab fa-instagram"></i></a></li>
+				</ul>
+			</div>
+			<div class="resources">
+				<h2 class="title">Resources</h2>
+				<ul>
+					<li>
+						<span>Api:</span>
+						<a target="_blank" href="https://breakingbadapi.com/"> breakingbadapi.com</a>
+					</li>
+					<li>
+						<span>Motorhome:</span>
+						<a target="_blank" href="https://sketchfab.com/3d-models/breaking-bad-rv-1986-fleetwood-bounder-0a1703bd068546b2af34a5b5e5b0ceca"> Breaking Bad RV - 1986 Fleetwood Bounder by Jamie McFarlane</a>
+					</li>
+					<li>
+						<span>Library for full screen scrolling:</span>
+						<a target="_blank" href="https://github.com/alvarotrigo/fullPage.js#fullpagejs"> fullPage.js</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+	<script src="./js/three.js"></script>
+	<script src="./js/GLTFLoader.js"></script>
+	<script src="js/fullpage.min.js"></script>
+	<script type="module" src="./js/app.js"></script>
+	<!-- <script type="module" src="./js/furgoneta.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,596 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body{
+	font-family: 'Neuton', serif;
+	color: white;
+}
+
+/*styles first section home*/
+/*styles first section home*/
+
+.header{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+}
+
+.background{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+}
+
+.left,
+.right{
+	width: 50%;
+	height: 100%;
+	position: relative;
+}
+
+.left{
+	background-color: #091E05;
+	padding: 1em 2em;
+	text-align: center;
+}
+
+.logoBB{
+	width: 30%;
+    margin: 3em 0 2em;
+    text-align: center;
+}
+
+
+.left .title{
+	font-size: 2.6em;
+    text-align: left;
+    margin-bottom: 1em;
+}
+
+.left .text{
+	text-align: justify;
+    font-size: 1.5em;
+}
+
+.left .buttons{
+	display: flex;
+    width: 90%;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 3em;
+    left: 2em;
+}
+
+
+.left .btn{
+	width: 20%;
+    padding: .5em;
+    text-decoration: none;
+    background-color: white;
+    border-radius: 1em;
+    font-size: 1.2em;
+    color: #091E05;
+    font-weight: 700;
+}
+
+.left .btn:hover{
+	animation: btn_hover .4s ease forwards;
+}
+
+@keyframes btn_hover{
+	to{
+		color: white;
+		background-color: #091E05;
+		box-shadow:inset 0 0 0 2px white; 
+	}
+}
+
+.right{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.background .right::before{
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url('../img/fondo desierto.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+	-webkit-filter: blur(2px); /* Webkit */
+    filter: gray; /* IE6-9 */
+    filter: blur(2px); /* W3C */
+}
+
+.background .right::after{
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background-color: hsla(46, 85%, 38%, 0.7);
+}
+
+/*styles second section*/
+/*styles second section*/
+
+/*characters section*/
+/*characters section*/
+
+.characters{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-image: url('../img/breaking-bad-wallpaper.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: bottom;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+	overflow: hidden;
+	transition: background .5s ease;
+}
+
+.characters::after{
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,.4);
+}
+
+.characters.WalterWhite{
+	background-image: url('../img/heisenberg.jpg');
+}
+
+.allCharacters{
+	position: relative;
+	min-width: 100%;
+	height: 13em;
+	bottom: 2em;
+}
+
+/*.section-character-info*/
+/*.section-character-info*/
+
+.section-character-info{
+	position: relative;
+	min-width: 100%;
+    min-height: calc(100% - 15em);
+    display: flex;
+    justify-content: space-between;
+    padding: 2em 3em;
+    z-index: 10;
+}
+
+.section-character-info h4{
+	font-size: 1.05em;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.label{
+	color: #FFEB3B;
+    text-transform: capitalize;
+}
+
+.section-character-info .info{
+	display: flex;
+    justify-content: left;
+}
+
+.section-character-info .card-header{
+	width: 15em;
+    height: 90%;
+    border: none;
+    box-shadow: 0px 5px 20px 5px rgba(0,0,0,.5);
+}
+
+.characters.WalterWhite .section-character-info .card-header{
+    box-shadow: 0px 5px 20px 5px rgba(255,255,255,.1);
+}
+
+.section-character-info	.character-status{
+	opacity: 1;
+}
+
+.section-character-info .card-header .character-photo{
+	filter: blur(0);
+}
+
+.section-character-info .card-body{
+	display: block;
+	max-width: 22em;
+	padding: 2.5em 1.5em 0;
+}
+
+.section-character-info .otherInformation,
+.section-character-info .card-body{
+	max-width: 22em;
+}
+
+.section-character-info .otherInformation{
+	padding: 2.5em 0 0;
+}
+
+
+/*search bar*/
+/*search bar*/
+
+.section-character-info .searchBar{
+	position: absolute;
+    width: 19em;
+    height: 2em;
+    left: calc(50% - 8em);
+    top: 2em;
+    border-radius: .5em;
+    background: rgba(255,255,255,.1);
+}
+.section-character-info .searchBar .bar{
+    outline: none;
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: .5em 1em;
+    background: transparent;
+    color: white;
+}
+.section-character-info .searchBar:hover .bar,
+.section-character-info .searchBar .bar:focus{
+	background: rgba(255,255,255,.1);
+}
+.section-character-info .searchBar .iconSearch{
+    position: absolute;
+    top: .5em;
+    right: 1em;
+    color: rgba(0,0,0,.5);
+    cursor: pointer;
+}
+
+.searchBar .search-options .searchOption{
+	position: relative;
+	padding: .5em 1em;
+    margin: .2em;
+    background: rgba(255,255,255,.1);
+    color: rgba(255,255,255,.7);
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.searchBar .search-options .searchOption:hover{
+    background: rgba(255,255,255,.3);
+}
+
+/*style standar cards characters*/
+
+.character-card{
+	width: 10em;
+    height: 13em;
+	background: transparent;
+	border-radius: 15px;
+	overflow: hidden;
+	position: absolute;
+	bottom: 0;
+	transition: height .5s ease;
+}
+
+.character-card:hover{
+	/*z-index: 20 !important;*/
+	cursor: pointer;
+}
+.character-card:hover .character-photo{
+	filter: blur(0);
+}
+.card-header{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	overflow: hidden;
+    position: relative;
+    border: 1px solid black;
+}
+
+.character-photo{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	vertical-align: bottom;
+	filter: blur(3px);
+}
+
+.character-status{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: .3em 1.3em;
+	opacity: 0;
+	border-top-left-radius: .5em;
+}
+
+.card-body{
+	padding: 1em 1.5em;
+	display: none;
+}
+
+.character-appearances .appearances{
+	list-style: none;
+}
+.appearances .appearance{
+	display: inline-block;
+	padding: 0.2em 0.5em;
+}
+.character-occupations{
+	margin: 1em 0;
+}
+.character-occupations .occupations{
+	list-style: none;
+}
+
+/*Character card home*/
+/*Character card home*/
+
+.character-card.home{
+	width: 19em;
+	height: unset;
+	position: relative;
+	top: unset;
+	transition: none;
+    height: max-content;
+    background: rgba(0,0,0,.8);
+    color: white;
+    z-index: 10;
+    box-shadow: 10px 20px 30px -10px rgba(0,0,0,.8);
+}
+
+.character-card.home .card-body{
+	display: block;
+}
+
+.character-card.home .card-header{
+    border: none;
+}
+
+.character-card.home .character-photo{
+	filter: blur(0px);
+	height: 410px;
+}
+
+
+/*Character card center*/
+/*Character card center*/
+
+
+.character-card.center{
+	height: 15em;
+}
+.character-card.center .character-photo{
+	filter: blur(0px);
+}
+.character-card.center .card-header{
+	border: none;
+}
+
+/*epidoes section*/
+/*epidoes section*/
+
+.episodes-section{
+	width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,92);
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em;
+    overflow: hidden;
+}
+.furgo{
+	width: 50%;
+	height: 100%;
+}
+.furgo canvas{outline: none;}
+.episodes-menu{
+    overflow-y: scroll;
+}
+
+details{
+	padding: .5em 1em;
+	font-size: 1.2em;
+}
+summary{
+	outline: none;
+	cursor: pointer;
+	font-weight: 700;
+	font-size: 1.25em;
+}
+summary::-webkit-details-marker {
+    display: none;
+}
+summary:before {
+    content: "";
+    margin-right: 10px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url('../img/flasks.svg');
+    background-size: cover;
+}
+.characters-list{
+	margin-left: 1.5em;
+}
+.details-content{
+	padding: 0.5em 1.5em;
+}
+
+.episodes-menu::-webkit-scrollbar {
+  width: 5px;
+}
+
+.episodes-menu::-webkit-scrollbar-thumb {
+  background-color: #ffeb3b;
+  border-radius: 0.5em;
+}
+
+.episodes-menu::-webkit-scrollbar-track {
+  background-color: rgba(255,255,255,0.2);
+}
+
+/*credits-section*/
+/*credits-section*/
+/*credits-section*/
+
+.credits-section{
+	position: relative;
+	width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2em;
+    font-size: 1.8em;
+    background-color: #091E05;
+    line-height: 1.4em;
+    text-align: justify;
+}
+
+.credits-section::after{
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+			    
+	background: linear-gradient(0deg, rgba(0,0,0,.3),transparent 4em),
+	            linear-gradient(90deg, rgba(0,0,0,.3), transparent 4em),
+			    linear-gradient(270deg, rgba(0,0,0,.3), transparent 4em),
+			    linear-gradient(180deg, rgba(0,0,0,.3),transparent 4em);
+}
+
+a{
+	color: inherit;
+}
+
+.createby,
+.resources{
+	max-width: 45%;
+    height: 100%;
+    height: 15em;
+    padding: 1em;
+    z-index: 5;
+}
+
+.resources{
+    text-align: left;
+}
+
+.createby ul{
+	list-style: none;
+}
+
+.createby a{
+	text-decoration: none;
+}
+.createby span{
+	color: #FFEB3B; 
+}
+
+.credits-section .title{
+	margin-bottom: .5em;
+}
+
+
+.createby ul li{
+	display: inline-block;
+	padding: .5em .25em;
+}
+
+.createby ul i:hover{
+	color: rgba(255,255,255,.7)
+}
+
+
+
+@media (max-device-width: 600px),(max-width: 600px){
+	body{
+		font-size: 25px;
+	}
+	.background{
+		flex-direction: column-reverse;
+	}
+	.left,.right{
+		width: 100%;
+	}
+	.right{
+    	max-height: 40vh;
+	}
+	.left{
+		padding: 1em 5em;
+	}
+
+	.character-card.home .character-photo{
+		object-position: top;
+	} 
+
+	.characters{
+		justify-content: unset;
+	}
+
+	.section-character-info{
+	    min-height: calc(90% - 15em);
+	    align-items: center;
+	}
+
+	.section-character-info .card-header{
+		max-height: 20em;
+	}
+
+	.section-character-info .info,
+	.section-character-info .otherInformation{
+		height: 30em;
+	}
+
+	.episodes-section{
+		flex-direction: column-reverse;
+		align-items: flex-end;
+	}
+
+	.episodes-section .furgo {
+	    width: 100%;
+	    height: 40%;
+	}
+
+	.episodes-menu{
+		max-width: 90%;
+	}
+
+	.credits-section{
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.createby,
+	.resources{
+		max-width: 100%;
+	}
+}
