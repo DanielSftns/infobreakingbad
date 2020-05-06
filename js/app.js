@@ -33,6 +33,9 @@ const myFullpage = new fullpage('#fullpage', {
                 carouselCharacters.searchCharacter(searchBar.value)
         })
 
+        document.querySelector('.controlButtons .buttonLeft').addEventListener('click',()=> {carouselCharacters.moveCharacter('ArrowLeft')})
+        document.querySelector('.controlButtons .buttonRight').addEventListener('click',()=> {carouselCharacters.moveCharacter('ArrowRight')})
+
         searchBar.addEventListener('focus', () =>{
             stateFocusSections.focusCharacters = false;
         })

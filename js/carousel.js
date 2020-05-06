@@ -244,7 +244,7 @@ export class CarouselCharacters{
         const nameCharacter = newCardCenter.querySelector('.character-quote').classList[1]
         const info = document.querySelector('.section-character-info .info')
         info.innerHTML = newCardCenter.innerHTML
-        newCardCenter.parentNode.parentNode.className = `characters ${nameCharacter}`
+        newCardCenter.parentNode.parentNode.parentNode.className = `characters ${nameCharacter}`
 
         const oldCardCenter = this.charactersDomArea.querySelector('.character-card.center')
         oldCardCenter.classList.remove('center')

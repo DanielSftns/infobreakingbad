@@ -160,7 +160,17 @@ body{
 }
 
 .characters.WalterWhite{
-	background-image: url('../img/heisenberg.jpg');
+	background-image: url('../img/WalterWhite.jpg');
+}
+.characters.JessePinkman{
+	background-image: url('../img/JessePinkman.jpg');
+}
+.characters.HenrySchrader{
+	background-image: url('../img/HenrySchrader.jpg');
+	background-position: unset;
+}
+.characters.GustavoFring{
+	background-image: url('../img/GustavoFring.svg');
 }
 
 .allCharacters{
@@ -168,6 +178,10 @@ body{
 	min-width: 100%;
 	height: 13em;
 	bottom: 2em;
+}
+
+.controlButtons{
+	display: none;
 }
 
 /*.section-character-info*/
@@ -548,13 +562,37 @@ a{
 		padding: 1em 5em;
 	}
 
+	.characters.WalterWhite{
+		background-image: url('../img/WalterWhite.jpg');
+	}
+	.characters.JessePinkman{
+		background-image: url('../img/JessePinkman.jpg');
+		background-position: left;
+	}
+	.characters.HenrySchrader{
+		background-image: url('../img/HenrySchrader.jpg');
+		background-position: unset;
+		background-position-x: -19em;
+	}
+	.characters.GustavoFring{
+		background-image: url('../img/GustavoFring.svg');
+	}
+
+	.allCharacters{
+		bottom: unset;
+	}
+
 	.character-card.home .character-photo{
 		object-position: top;
+	}
+
+	.character-card.center .character-status{
+		opacity: 1;
 	} 
 
-	.characters{
+	/*.characters{
 		justify-content: unset;
-	}
+	}*/
 
 	.section-character-info{
 	    min-height: calc(90% - 15em);
@@ -563,11 +601,52 @@ a{
 
 	.section-character-info .card-header{
 		max-height: 20em;
+		display: none;
 	}
 
 	.section-character-info .info,
 	.section-character-info .otherInformation{
 		height: 30em;
+	}
+
+	.section-character-info .otherInformation{
+		padding: 0;
+		text-align: right;
+	}
+	.section-character-info .card-body{
+		padding: 0 1.5em 0 0;
+	}
+
+	.controlButtons{
+		display: flex;
+		width: 100vw;
+		font-size: 2em;
+		position: relative;
+		z-index: 1;
+	}
+	.controlButtons .buttonLeft,
+	.controlButtons .buttonRight{
+		width: 50%;
+		padding: 1em 3em;
+		background: rgba(0,0,0,.1);
+		color: rgba(255,255,255,.6);
+	}
+	.controlButtons .buttonLeft{
+		text-align: left;
+	}
+	.controlButtons .buttonRight{
+		text-align: right;
+	}
+	.controlButtons .buttonLeft:active,
+	.controlButtons .buttonRight:active{
+		background: rgba(0,0,0,.3);
+	}
+
+	.characters.MarieSchrader .controlButtons .buttonLeft{
+		opacity: 0;
+	}
+	.characters.JackWelker .controlButtons .buttonRight{
+		opacity: 0;
 	}
 
 	.episodes-section{
