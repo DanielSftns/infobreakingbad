@@ -6,7 +6,7 @@ export class CarouselCharacters{
     charactersCars = []
     center = 50
     leftCards = 10
-    cardsInScreen = 0
+    cardsInScreen = 18
     allCharacters = []
     allDeaths
     timer
@@ -107,12 +107,20 @@ export class CarouselCharacters{
         }
 
         this.allCharacters = this.allCharacters.concat(charactersInOrden)
-        this.cardsInScreen = await this.renderCharacters(charactersInOrden)
-        this.showCardCharacter(this.charactersDomArea.querySelector('#characterCard6'))
-
+        this.WORKrenderCharacters(charactersInOrden)
     }
 
-    async renderCharacters(newCharacters, zIndex = 0){
+    async addCharactersQuotes(){
+        for(let i=0; i<this.charactersCars.length; i++){
+            if(this.charactersCars[i].querySelector('.character-quote').textContent == ''){
+                const name = this.charactersCars[i].querySelector('.character-name').textContent.replace('name: ','')
+                const quote = await this.getRandomQuote(name)
+                this.charactersCars[i].querySelector('.character-quote').textContent = `${quote}`
+            }  
+        }
+    }
+
+    async WORKrenderCharacters(newCharacters, zIndex = 0){
         let characters = []
         for(let i=0; i<newCharacters.length;i++){
             const character = newCharacters[i]
@@ -123,96 +131,49 @@ export class CarouselCharacters{
             }
         }
         let z_index = zIndex
-        let lastIdCard = this.charactersCars.length
-        let cardsInScreen = 0
-        for(let i=0; i<characters.length;i++){
-            
-            this.leftCards += 5
-            const characterCard = document.createElement('div')
-            const classes = `character-card ${this.leftCards==50? 'center': ''}`
+        const lastIdCard = this.charactersCars.length
 
-            const character = characters[i]
-            characterCard.setAttribute('class',`${classes.trim()}`)
-            characterCard.setAttribute('id',`characterCard${lastIdCard + i}`)
+        let worker = new Worker('./js/worker.js')
+        let i=0
+        let data = {
+            leftCards: this.leftCards,
+            character: characters[i],
+            id: lastIdCard + i 
+        }
+        worker.postMessage(data)
 
-            characterCard.style.left = `calc(${this.leftCards}% - 5em)`
-            const quote = await this.getRandomQuote(character.name)
+         worker.onmessage = message =>{
+            const {leftCards, characterCard} = message.data
+            this.leftCards = leftCards
+            const card = document.createElement('div')
+            card.innerHTML = characterCard
 
-            const nameCamelcase = `${(character.name).replace(/\s|\W/g,'')}`
-
-            let occupations = ''
-            for(let i=0; i< character.occupation.length;i++){
-                occupations = `${occupations}
-                        <li class="occupation">${character.occupation[i]}.</li>
-                        `
-            }
-            let appearances = ''
-            for(let i=0; i < character.appearance.length ;i++){
-                appearances = `${appearances}
-                        <li class="appearance">${character.appearance[i]}</li>
-                        `
-            }
-            let colorStatus = ''
-            switch(character.status){
-                case 'Alive':
-                    colorStatus = 'green'
-                    break
-                case 'Deceased':
-                    colorStatus = 'red'
-                    break
-                case 'Presumed dead':
-                    colorStatus = 'red'
-                    break
-                case '?':
-                    colorStatus = 'blue'
-                    break
-            }
-
-            characterCard.innerHTML = ` 
-                <div class="card-header">
-                    <img src="${character.img}" width="100px" height="100px" alt="${character.name}" class="character-photo" loading="lazy">
-                    <div class="character-status" style="background-color: ${colorStatus};">
-                        <h5 class="status">${character.status}</h5>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <h4 class="character-name"><span class="label">name:</span> ${character.name}</h4>
-                    <h4 class="character-nickname"><span class="label">nickname:</span> ${character.nickname}</h4>
-                    <h4 class="character-birthday"><span class="label">birthday:</span> ${character.birthday}</h4>
-                    <h4 class="character-quote ${nameCamelcase}">${quote}</h4>
-
-                    <div class="character-occupations">
-                        <h4 class="label">occupations:</h4>
-                        <ul class="occupations">
-                            ${occupations}
-                        </ul>
-                    </div>
-                    
-                    <div class="character-appearances">
-                        <h4 class="label">appearances:</h4>
-                        <ul class="appearances">
-                            ${appearances}
-                        </ul>
-                    </div>
-                    <div class="card-footer">
-                        <h4 class="portrayed"><span class="label">portrayed by:</span> ${character.portrayed}</h4>
-                    </div>
-                </div>
-                `
-
-            this.charactersDomArea.appendChild(characterCard)
+            this.charactersDomArea.appendChild(card)
 
             z_index = this.setStylesCardsCharacter(i + lastIdCard, z_index)
-            if(z_index > 0){
-                cardsInScreen++
-            }
 
-            characterCard.addEventListener('click',e => {
-                this.showCardCharacter(e.target.parentNode.parentNode)
+            card.firstElementChild.addEventListener('click', event => {
+                this.showCardCharacter(event.target.parentNode.parentNode)
             })
+
+            
+            i++
+            // debugger
+            if(i < characters.length){
+                data = {
+                    leftCards,
+                    character: characters[i],
+                    id: lastIdCard + i 
+                }
+                worker.postMessage(data)
+            }else{
+                this.charactersCars = this.charactersDomArea.querySelectorAll('.character-card')
+                if(this.charactersCars.length < 20){
+                    this.showCardCharacter(this.charactersDomArea.querySelector('#characterCard6'))
+                }
+                this.addCharactersQuotes()
+            }
         }
-        this.charactersCars = this.charactersDomArea.querySelectorAll('.character-card')
-        return cardsInScreen
     }
 
     setStylesCardsCharacter(id, z_index, z_indexAux){
@@ -244,8 +205,7 @@ export class CarouselCharacters{
         const nameCharacter = newCardCenter.querySelector('.character-quote').classList[1]
         const info = document.querySelector('.section-character-info .info')
         info.innerHTML = newCardCenter.innerHTML
-        newCardCenter.parentNode.parentNode.parentNode.className = `characters ${nameCharacter}`
-
+        this.charactersDomArea.parentNode.parentNode.className = `characters ${nameCharacter}`
         const oldCardCenter = this.charactersDomArea.querySelector('.character-card.center')
         oldCardCenter.classList.remove('center')
         this.otherInformation.innerHTML = ''
@@ -269,7 +229,7 @@ export class CarouselCharacters{
 
     async addCharacters(){
         const characters = await this.getCharacters(11, this.charactersCars.length)
-        await this.renderCharacters(characters,Math.round(this.cardsInScreen / 2))
+        await this.WORKrenderCharacters(characters,Math.round(this.cardsInScreen / 2))
         this.allCharacters = this.allCharacters.concat(characters)
     }
 
@@ -310,7 +270,7 @@ export class CarouselCharacters{
     }
 
     async renderAndShowCardCharacter(character){
-        await this.renderCharacters(character)
+        await this.WORKrenderCharacters(character)
         this.allCharacters = this.allCharacters.concat(character)
         this.showCardCharacter(this.charactersCars[this.charactersCars.length - 1])
         this.formatSearch()
