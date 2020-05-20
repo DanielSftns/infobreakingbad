@@ -1,7 +1,8 @@
 *{
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 body{
 	font-family: 'Neuton', serif;
@@ -14,8 +15,12 @@ body{
 .header{
 	width: 100%;
 	height: 100vh;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
 
 .background{
@@ -25,6 +30,8 @@ body{
 	right: 0;
 	width: 100%;
 	height: 100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 }
 
@@ -60,9 +67,12 @@ body{
 }
 
 .left .buttons{
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
     width: 90%;
-    justify-content: space-around;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
     position: absolute;
     bottom: 3em;
     left: 2em;
@@ -81,21 +91,38 @@ body{
 }
 
 .left .btn:hover{
-	animation: btn_hover .4s ease forwards;
+	-webkit-animation: btn_hover .4s ease forwards;
+	        animation: btn_hover .4s ease forwards;
+}
+
+@-webkit-keyframes btn_hover{
+	to{
+		color: white;
+		background-color: #091E05;
+		-webkit-box-shadow:inset 0 0 0 2px white;
+		        box-shadow:inset 0 0 0 2px white; 
+	}
 }
 
 @keyframes btn_hover{
 	to{
 		color: white;
 		background-color: #091E05;
-		box-shadow:inset 0 0 0 2px white; 
+		-webkit-box-shadow:inset 0 0 0 2px white;
+		        box-shadow:inset 0 0 0 2px white; 
 	}
 }
 
 .right{
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 .background .right::before{
@@ -138,14 +165,23 @@ body{
 	position: relative;
 	width: 100%;
 	height: 100%;
-	background-image: url('../img/breaking-bad-wallpaper.png');
+	background-image: url('../img/breaking-bad-wallpaper.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: bottom;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 	overflow: hidden;
+	-webkit-transition: background .5s ease;
+	-o-transition: background .5s ease;
 	transition: background .5s ease;
 }
 
@@ -172,6 +208,12 @@ body{
 .characters.GustavoFring{
 	background-image: url('../img/GustavoFring.svg');
 }
+.characters.MikeEhrmantraut{
+	background-image: url('../img/MikeEhrmantraut.jpg');
+}
+.characters.SaulGoodman{
+	background-image: url('../img/SaulGoodman.svg');
+}
 
 .allCharacters{
 	position: relative;
@@ -191,8 +233,12 @@ body{
 	position: relative;
 	min-width: 100%;
     min-height: calc(100% - 15em);
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     padding: 2em 3em;
     z-index: 10;
 }
@@ -209,19 +255,25 @@ body{
 }
 
 .section-character-info .info{
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-    justify-content: left;
+    -webkit-box-pack: left;
+        -ms-flex-pack: left;
+            justify-content: left;
 }
 
 .section-character-info .card-header{
 	width: 15em;
     height: 90%;
     border: none;
-    box-shadow: 0px 5px 20px 5px rgba(0,0,0,.5);
+    -webkit-box-shadow: 0px 5px 20px 5px rgba(0,0,0,.5);
+            box-shadow: 0px 5px 20px 5px rgba(0,0,0,.5);
 }
 
 .characters.WalterWhite .section-character-info .card-header{
-    box-shadow: 0px 5px 20px 5px rgba(255,255,255,.1);
+    -webkit-box-shadow: 0px 5px 20px 5px rgba(255,255,255,.1);
+            box-shadow: 0px 5px 20px 5px rgba(255,255,255,.1);
 }
 
 .section-character-info	.character-status{
@@ -229,7 +281,8 @@ body{
 }
 
 .section-character-info .card-header .character-photo{
-	filter: blur(0);
+	-webkit-filter: blur(0);
+	        filter: blur(0);
 }
 
 .section-character-info .card-body{
@@ -306,6 +359,8 @@ body{
 	overflow: hidden;
 	position: absolute;
 	bottom: 0;
+	-webkit-transition: height .5s ease;
+	-o-transition: height .5s ease;
 	transition: height .5s ease;
 }
 
@@ -314,7 +369,8 @@ body{
 	cursor: pointer;
 }
 .character-card:hover .character-photo{
-	filter: blur(0);
+	-webkit-filter: blur(0);
+	        filter: blur(0);
 }
 .card-header{
 	position: relative;
@@ -329,9 +385,11 @@ body{
 .character-photo{
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	-o-object-fit: cover;
+	   object-fit: cover;
 	vertical-align: bottom;
-	filter: blur(3px);
+	-webkit-filter: blur(3px);
+	        filter: blur(3px);
 }
 
 .character-status{
@@ -370,12 +428,17 @@ body{
 	height: unset;
 	position: relative;
 	top: unset;
+	-webkit-transition: none;
+	-o-transition: none;
 	transition: none;
+    height: -webkit-max-content;
+    height: -moz-max-content;
     height: max-content;
     background: rgba(0,0,0,.8);
     color: white;
     z-index: 10;
-    box-shadow: 10px 20px 30px -10px rgba(0,0,0,.8);
+    -webkit-box-shadow: 10px 20px 30px -10px rgba(0,0,0,.8);
+            box-shadow: 10px 20px 30px -10px rgba(0,0,0,.8);
 }
 
 .character-card.home .card-body{
@@ -387,7 +450,8 @@ body{
 }
 
 .character-card.home .character-photo{
-	filter: blur(0px);
+	-webkit-filter: blur(0px);
+	        filter: blur(0px);
 	height: 410px;
 }
 
@@ -400,7 +464,8 @@ body{
 	height: 15em;
 }
 .character-card.center .character-photo{
-	filter: blur(0px);
+	-webkit-filter: blur(0px);
+	        filter: blur(0px);
 }
 .character-card.center .card-header{
 	border: none;
@@ -413,8 +478,12 @@ body{
 	width: 100%;
     height: 100vh;
     background: rgba(0,0,0,92);
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     padding: 1em 2em;
     overflow: hidden;
 }
@@ -477,9 +546,15 @@ summary:before {
 	position: relative;
 	width: 100%;
     height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     padding: 2em;
     font-size: 1.8em;
     background-color: #091E05;
@@ -494,6 +569,16 @@ summary:before {
 	position: absolute;
 	left: 0;
 	top: 0;
+			    
+	background: -webkit-gradient(linear, left bottom, left top, from(rgba(0,0,0,.3)),color-stop(4em, transparent)),
+	            -webkit-gradient(linear, left top, right top, from(rgba(0,0,0,.3)), color-stop(4em, transparent)),
+			    -webkit-gradient(linear, right top, left top, from(rgba(0,0,0,.3)), color-stop(4em, transparent)),
+			    -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.3)),color-stop(4em, transparent));
+			    
+	background: -o-linear-gradient(bottom, rgba(0,0,0,.3),transparent 4em),
+	            -o-linear-gradient(left, rgba(0,0,0,.3), transparent 4em),
+			    -o-linear-gradient(right, rgba(0,0,0,.3), transparent 4em),
+			    -o-linear-gradient(top, rgba(0,0,0,.3),transparent 4em);
 			    
 	background: linear-gradient(0deg, rgba(0,0,0,.3),transparent 4em),
 	            linear-gradient(90deg, rgba(0,0,0,.3), transparent 4em),
@@ -550,7 +635,10 @@ a{
 		font-size: 25px;
 	}
 	.background{
-		flex-direction: column-reverse;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: reverse;
+		    -ms-flex-direction: column-reverse;
+		        flex-direction: column-reverse;
 	}
 	.left,.right{
 		width: 100%;
@@ -577,13 +665,22 @@ a{
 	.characters.GustavoFring{
 		background-image: url('../img/GustavoFring.svg');
 	}
+	.characters.MikeEhrmantraut{
+		background-image: url('../img/MikeEhrmantraut.jpg');
+		background-position: right;
+	}
+	.characters.SaulGoodman{
+		background-image: url('../img/SaulGoodman.svg');
+		background-position: right;
+	}
 
 	.allCharacters{
 		bottom: unset;
 	}
 
 	.character-card.home .character-photo{
-		object-position: top;
+		-o-object-position: top;
+		   object-position: top;
 	}
 
 	.character-card.center .character-status{
@@ -596,7 +693,9 @@ a{
 
 	.section-character-info{
 	    min-height: calc(90% - 15em);
-	    align-items: center;
+	    -webkit-box-align: center;
+	        -ms-flex-align: center;
+	            align-items: center;
 	}
 
 	.section-character-info .card-header{
@@ -618,6 +717,8 @@ a{
 	}
 
 	.controlButtons{
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
 		width: 100vw;
 		font-size: 2em;
@@ -650,8 +751,13 @@ a{
 	}
 
 	.episodes-section{
-		flex-direction: column-reverse;
-		align-items: flex-end;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: reverse;
+		    -ms-flex-direction: column-reverse;
+		        flex-direction: column-reverse;
+		-webkit-box-align: end;
+		    -ms-flex-align: end;
+		        align-items: flex-end;
 	}
 
 	.episodes-section .furgo {
@@ -664,8 +770,13 @@ a{
 	}
 
 	.credits-section{
-		flex-direction: column;
-		justify-content: center;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		    -ms-flex-direction: column;
+		        flex-direction: column;
+		-webkit-box-pack: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
 	}
 
 	.createby,
