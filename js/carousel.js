@@ -1,6 +1,12 @@
+import {
+    getCharacters as getCharactersData,
+    getRandomQuote as getQuote,
+    getDeathCount,
+    getDeath,
+    searchCharacters
+} from "./service.js"
+
 export class CarouselCharacters{
-    urlBase
-    charactersDomArea
     otherInformation
     widthScreen
     charactersCars = []
@@ -12,8 +18,7 @@ export class CarouselCharacters{
     timer
     searchBar
     optionsDomArea
-    constructor(urlBase, domArea, domOtherInformation,optionsDomArea,searchBar){
-        this.urlBase = urlBase
+    constructor(domArea, domOtherInformation,optionsDomArea,searchBar){
         this.charactersDomArea = domArea
         this.widthScreen = this.charactersDomArea.parentNode.offsetWidth
         this.otherInformation = domOtherInformation
@@ -22,34 +27,31 @@ export class CarouselCharacters{
         this.showCharacterHome()
     }
 
-    async getCharacters(limit=18, offset=0, category='Breaking Bad'){
-        const res = await fetch(`${this.urlBase}characters?limit=${limit}&offset=${offset}`)
-        const data = await res.json()
-        const characters = data.filter(character => character.category.includes(`${category}`))
+    async getCharacters(limit=18, offset=0){
+        const characters = await getCharactersData(limit, offset)
         return characters
     }
 
     async getRandomQuote(characterName){
-        const res = await fetch(`${this.urlBase}quote/random?author=${characterName}`)
-        const data = await res.json()
-        const quote = typeof data[0] == 'undefined'? '' : data[0].quote
+        const data = await getQuote(characterName)
+        const quote = typeof data == 'undefined'? '' : data
         return `${quote.replace('B****','Bitch').replace('b****','bitch')}`
     }
 
     async showCharacterHome(){
         const homeRight = document.querySelector('.background .right')
-        const res = await fetch(`${this.urlBase}characters/${Math.round(Math.random()) + 1}`)
-        const character = await res.json();
-
+        const characters = await this.getCharacters(2, 0)
+        const ramdomID = Math.round(Math.random()) + 1
+        const character = characters.find(char => char.char_id === ramdomID)
         const characterCard = document.createElement('div')
         characterCard.setAttribute('class','character-card home')
         characterCard.innerHTML = `
                         <div class="card-header">
-                            <img src="${character[0].img}" alt="${character[0].name}" class="character-photo">
+                            <img src="${character.img}" alt="${character.name}" class="character-photo">
                         </div>
                         <div class="card-body">
-                            <h3 class="character-nickname">${character[0].nickname}</h3>
-                            <h4 class="character-quote">${await this.getRandomQuote(character[0].name)}</h4>
+                            <h3 class="character-nickname">${character.nickname}</h3>
+                            <h4 class="character-quote">${await this.getRandomQuote(character.name)}</h4>
                         </div>`
         homeRight.appendChild(characterCard)
     }
@@ -237,9 +239,7 @@ export class CarouselCharacters{
         if(keyWords.length < 3) return
         let character = this.allCharacters.filter(character => character.name.toLowerCase().includes(`${keyWords.toLowerCase()}`))
         if(typeof character[0] == 'undefined'){
-            const res = await fetch(`${this.urlBase}characters?name=${keyWords}`)
-            let data = await res.json()
-            data = data.filter(character => character.category.includes('Breaking Bad'))
+            const data = await searchCharacters(keyWords)
 
             if(data.length == 1){
                 this.renderAndShowCardCharacter(data)
@@ -306,21 +306,20 @@ export class CarouselCharacters{
     }
 
     async renderOtherInformation(){
-        this.allDeaths = (typeof this.allDeaths == 'undefined')? await this.getAllDeaths(): this.allDeaths
         const characterId = parseInt(this.charactersDomArea.querySelector('.character-card.center').id.replace('characterCard',''))
         const character = this.allCharacters[characterId]
-        const deathInformation = this.allDeaths.filter(death => death.death == character.name)
-        const deathCount = await this.getDeathCount(character.name)
+        const deathInformation = await getDeath(character.name)
+        const deathCount = await getDeathCount(character.name)
 
-        if(typeof deathInformation[0] == 'undefined'){
+        if(!deathInformation){
             this.otherInformation.innerHTML = `
-                <h4><span class="label">deaths for which he was responsible:</span> ${deathCount[0].deathCount}</h4>`
+                <h4><span class="label">deaths for which he was responsible:</span> ${deathCount}</h4>`
             return
         }
-        const {cause, responsible, last_words, season,episode, number_of_deaths} = deathInformation[0]
+        const {cause, responsible, last_words, season, episode } = deathInformation
 
         this.otherInformation.innerHTML = `
-            <h4><span class="label">deaths for which he was responsible:</span> ${deathCount[0].deathCount}</h4>
+            <h4><span class="label">deaths for which he was responsible:</span> ${deathCount}</h4>
             <h3 class="label" style="margin-top: 1em;">death information</h3>
             <h4><span class="label">cause:</span> ${cause}</h4>
             <h4><span class="label">responsible:</span> ${responsible}</h4>
@@ -329,17 +328,4 @@ export class CarouselCharacters{
             <h4><span class="label">episode:</span> ${episode}</h4>
             <br>`
     }
-
-    async getDeathCount(characterName){
-        const res = await fetch(`${this.urlBase}death-count?name=${characterName}`)
-        const data = await res.json()
-        return data
-    }
-
-    async getAllDeaths(){
-        const res = await fetch(`${this.urlBase}deaths`)
-        const data = await res.json()
-        return data
-    }
-
 }

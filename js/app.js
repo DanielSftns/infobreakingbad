@@ -1,7 +1,7 @@
 import {CarouselCharacters} from './carousel.js'
 import {animate} from './furgoneta.js'
+import { getAllEpisodes as getEpisodes } from './service.js'
 
-const urlBase = 'https://www.breakingbadapi.com/api/'
 const charactersDomArea = document.querySelector('.allCharacters')
 const otherInformation = document.querySelector('.characters .section-character-info .otherInformation')
 const searchBar = document.querySelector('#searchBar')
@@ -15,7 +15,7 @@ export let stateFocusSections = {
 
 let focusCharacters = false
 
-const carouselCharacters = new CarouselCharacters(urlBase, charactersDomArea, otherInformation, optionsDomArea, searchBar)
+const carouselCharacters = new CarouselCharacters(charactersDomArea, otherInformation, optionsDomArea, searchBar)
 
 const myFullpage = new fullpage('#fullpage', {
     anchors: ['header', 'characters', 'episodes', 'credits'],
@@ -66,14 +66,14 @@ const myFullpage = new fullpage('#fullpage', {
 })
 
 async function start(){
-    await carouselCharacters.addInitialsCharacters()
+    carouselCharacters.addInitialsCharacters()
     getAllEpisodes()
 }
 
 async function getAllEpisodes(){
     const episodeSection = document.querySelector('.episodes-section .episodes-menu')
-    const res = await fetch(`${urlBase}episodes?series=Breaking Bad`)
-    const episodes = await res.json()
+    const episodes = await getEpisodes()
+
     episodes.forEach(episode =>{
         const details = document.createElement('details')
         const summary = document.createElement('summary')
