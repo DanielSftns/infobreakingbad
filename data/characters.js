@@ -310,5 +310,113 @@ export default [
     "status": "Alive",
     "portrayed": "Bill Burr",
     "dead": null
+  },
+  {
+    "img": "https://example.com/gale_boetticher.jpg",
+    "name": "Gale Boetticher",
+    "birthday": "1968-03-14",
+    "nickname": "Captain Cook",
+    "char_id": 21,
+    "occupation": ["Chemist", "Methamphetamine Manufacturer"],
+    "appearance": [3, 4],
+    "status": "Deceased",
+    "portrayed": "David Costabile",
+    "dead": {
+        "season": 3,
+        "episode": 12,
+        "cause": "Gunshot wound",
+        "last_words": "Wait! You don't have to do this!",
+        "responsible": "Jesse Pinkman"
+    }
+  },
+  {
+      "img": "https://example.com/combinations_man.jpg",
+      "name": "Combo",
+      "birthday": "1985-05-20",
+      "nickname": "Combo",
+      "char_id": 22,
+      "occupation": ["Methamphetamine Distributor"],
+      "appearance": [1, 2, 3],
+      "status": "Deceased",
+      "portrayed": "Rodney Rush",
+      "dead": {
+          "season": 3,
+          "episode": 6,
+          "cause": "Gunshot wound",
+          "last_words": "Hey, man, I'm just trying to make a living.",
+          "responsible": "Tomas Cantillo"
+      }
+  },
+  {
+      "img": "https://example.com/don_eladio.jpg",
+      "name": "Don Eladio Vuente",
+      "birthday": "1950-07-15",
+      "nickname": "El Jefe",
+      "char_id": 23,
+      "occupation": ["Drug Lord"],
+      "appearance": [3, 4],
+      "status": "Deceased",
+      "portrayed": "Steven Bauer",
+      "dead": {
+          "season": 4,
+          "episode": 13,
+          "cause": "Poisoning",
+          "last_words": "Salud!",
+          "responsible": "Gustavo Fring"
+      }
+  },
+  {
+      "img": "https://example.com/tomas_cantillo.jpg",
+      "name": "Tomas Cantillo",
+      "birthday": "1998-02-10",
+      "nickname": "Tommy",
+      "char_id": 24,
+      "occupation": ["Student", "Methamphetamine Distributor"],
+      "appearance": [3],
+      "status": "Deceased",
+      "portrayed": "Angelo Martinez",
+      "dead": {
+          "season": 3,
+          "episode": 10,
+          "cause": "Gunshot wound",
+          "last_words": "I didn't do anything!",
+          "responsible": "Tuco Salamanca"
+      }
+  },
+  {
+      "img": "https://example.com/marco_salamanca.jpg",
+      "name": "Marco Salamanca",
+      "birthday": "1970-04-15",
+      "nickname": "Marco",
+      "char_id": 25,
+      "occupation": ["Cartel Enforcer"],
+      "appearance": [2],
+      "status": "Deceased",
+      "portrayed": "Luis Moncada",
+      "dead": {
+          "season": 3,
+          "episode": 7,
+          "cause": "Gunshot wound",
+          "last_words": "For the family!",
+          "responsible": "Hank Schrader"
+      }
+  },
+  {
+      "img": "https://example.com/leonel_salamanca.jpg",
+      "name": "Leonel Salamanca",
+      "birthday": "1970-04-15",
+      "nickname": "Leonel",
+      "char_id": 27,
+      "occupation": ["Cartel Enforcer"],
+      "appearance": [2],
+      "status": "Deceased",
+      "portrayed": "Daniel Moncada",
+      "dead": {
+          "season": 3,
+          "episode": 7,
+          "cause": "Gunshot wound",
+          "last_words": "For the family!",
+          "responsible": "Hank Schrader"
+      }
   }
 ]
